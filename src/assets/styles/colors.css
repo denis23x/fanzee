@@ -1,0 +1,21 @@
+@layer utilities {
+	.bg-gray {
+		background: #292D32;
+	}
+
+	.bg-green {
+		background: #039C55;
+	}
+
+	.bg-blue {
+		background: #2C81FB;
+	}
+
+	.bg-purple {
+		background: #702BFE;
+	}
+
+	.bg-red {
+		background: #E81A0C;
+	}
+}
