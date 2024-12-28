@@ -1,10 +1,10 @@
 <template>
-  <ul class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" v-if="data?.items">
+  <ul class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" v-if="data?.items.length">
     <li v-for="movie in data.items" :key="movie.id">
       <CardComponent :movie="movie"></CardComponent>
     </li>
   </ul>
-  <p v-else>Loading...</p>
+  <p v-else class="text-white heading-5 min-h-screen">Loading...</p>
 </template>
 
 <script lang="ts">

@@ -1,20 +1,20 @@
 <template>
   <ul class="flex gap-2">
     <li :class="ratingColor">
-      <svg viewBox="0 0 8 8">
-        <use xlink:href="../assets/sprite.svg#icon-star"></use>
+      <svg width="8" height="8" viewBox="0 0 8 8">
+        <use xlink:href="../assets/icons/sprite.svg#icon-star"></use>
       </svg>
       <span>{{ ratingValue }}</span>
     </li>
     <li class="bg-blue">
-      <svg viewBox="0 0 8 8">
-        <use xlink:href="../assets/sprite.svg#icon-tape"></use>
+      <svg width="8" height="8" viewBox="0 0 8 8">
+        <use xlink:href="../assets/icons/sprite.svg#icon-tape"></use>
       </svg>
       <span class="first-letter:uppercase">{{ movie.genre }}</span>
     </li>
     <li class="bg-purple">
-      <svg viewBox="0 0 8 8">
-        <use xlink:href="../assets/sprite.svg#icon-play"></use>
+      <svg width="8" height="8" viewBox="0 0 8 8">
+        <use xlink:href="../assets/icons/sprite.svg#icon-play"></use>
       </svg>
       <span>{{ movie.duration }}</span>
     </li>
@@ -22,31 +22,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'TagsComponent',
-  computed: {
-    ratingValue() {
-      return (Math.round(this.movie.rating * 10) / 10).toFixed(1)
-    },
-    ratingColor() {
-      if (this.movie.rating <= 4) {
-        return 'bg-red'
-      } else if (this.movie.rating > 4 && this.movie.rating <= 7) {
-        return 'bg-purple'
-      } else if (this.movie.rating > 7) {
-        return 'bg-green'
-      }
-
-      return ''
-    },
-  },
   props: {
     movie: {
       type: Object,
       required: true,
     },
+  },
+  setup(props) {
+    const ratingValue = computed(() => {
+      return (Math.round(props.movie.rating * 10) / 10).toFixed(1)
+    })
+
+    const ratingColor = computed(() => {
+      if (props.movie.rating <= 4) {
+        return 'bg-red'
+      } else if (props.movie.rating > 4 && props.movie.rating <= 7) {
+        return 'bg-purple'
+      } else if (props.movie.rating > 7) {
+        return 'bg-green'
+      }
+
+      return ''
+    })
+
+    return {
+      ratingValue,
+      ratingColor,
+    }
   },
 })
 </script>

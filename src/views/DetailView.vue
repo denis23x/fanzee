@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-start gap-16" v-if="data">
     <aside class="grid gap-6 text-white max-w-[240px] sticky top-[calc(101.5px+32px)]">
-      <h1>{{ data.name }}</h1>
+      <span class="heading-1">{{ data.name }}</span>
       <img
         class="object-cover h-auto w-full rounded-lg"
         :src="data.poster"
@@ -10,14 +10,14 @@
       />
       <TagsComponent :movie="data"></TagsComponent>
     </aside>
-    <div class="grid gap-4 text-white max-w-[340px]">
-      <div class="heading-1">Description</div>
+    <section class="grid gap-4 text-white max-w-[340px]">
+      <span class="heading-1">Description</span>
       <p>{{ data.description }}</p>
-      <div class="heading-1">Trivia</div>
+      <span class="heading-1">Trivia</span>
       <ul class="list-disc list-inside">
         <li v-for="trivia in data.trivia" :key="trivia">{{ trivia }}</li>
       </ul>
-      <div class="heading-1">Actors</div>
+      <span class="heading-1">Actors</span>
       <ul class="list-disc list-inside">
         <li v-for="actor in data.actors" :key="actor.imdb_id">
           <a
@@ -34,9 +34,9 @@
         <summary>Extra height to check aside sticky position</summary>
         <p class="h-[999px]">...</p>
       </details>
-    </div>
+    </section>
   </div>
-  <p v-else>Loading...</p>
+  <p v-else class="text-white heading-5 min-h-screen">Loading...</p>
 </template>
 
 <script lang="ts">
